@@ -10,7 +10,7 @@ route.post('/add-disease', (req,res)=>{
     let {dName,symptom, description, imageUrl,homeRemedies, type, healthEffect,cancerous}= req.body;
     const symptoms = symptom.split(',');
     const remedies  = homeRemedies.split(/\r?\n/);
-    const isCancerous = cancerous === 'yes'? true : false;
+    const isCancerous = cancerous === "Yes"? true : false;
     try{
         const data = new disease({dName,symptoms, description, imageUrl, remedies, type, healthEffect, isCancerous});
         data.save();
