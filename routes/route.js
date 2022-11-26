@@ -23,7 +23,7 @@ route.post('/add-disease', (req,res)=>{
 route.get('/data',(req,res)=>{
     
     disease.find().then((result)=> {
-        res.send(result);
+        res.json(result);
     }).catch(err => console.log(err) );
 });
 
