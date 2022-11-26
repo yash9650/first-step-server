@@ -3,9 +3,11 @@ import mongoose from "mongoose";
 
 const DiseaseSchema = new mongoose.Schema({
     dName : String,
-    symptoms: Array,
+    symptoms: {
+        type: Array
+    },
     description: String,
-    imageUrl : String,
+    imageUrl : Array,
     remedies : Array,
     type: {
         type: String,

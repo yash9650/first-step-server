@@ -6,28 +6,33 @@ const route = express.Router();
 
 
 route.get('/',(req,res)=>{res.render('disease')});
-route.post('/add-disease', (req,res)=>{
-    let {dName,symptom, description, imageUrl,homeRemedies, type, healthEffect,cancerous}= req.body;
+route.post('/add-disease', async(req,res)=>{
+    const {dName,symptom, description, image,homeRemedies, type, healthEffect,cancerous}= req.body;
     const symptoms = symptom.split(',');
     const remedies  = homeRemedies.split(/\r?\n/);
+    const imageUrl = image.split(/\r?\n/);
     const isCancerous = cancerous === "Yes"? true : false;
+
     try{
         const data = new disease({dName,symptoms, description, imageUrl, remedies, type, healthEffect, isCancerous});
-        data.save();
+        await data.save();
         res.redirect('/');
-    }catch(err){
-        console.log(err);
+    }catch(error){
+        res.render('error',{error});
     }
 });
 
-route.get('/data',(req,res)=>{
-    
-    disease.find().then((result)=> {
+
+route.get('/data',async(req,res)=>{
+    try{
+        const result = await disease.find();
         res.json(result);
-    }).catch(err => console.log(err) );
+    }catch(error){
+        res.render('error',{error});
+    }
 });
 
-route.get('/detail',async(req,res)=>{
+route.get('/:type/:id',async(req,res)=>{
     const {id,type} = req.query;
     const data = await disease.findById(id).then(result => result);
     res.json(data);
