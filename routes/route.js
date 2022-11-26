@@ -34,8 +34,16 @@ route.get('/data',async(req,res)=>{
 
 route.get('/:type/:id',async(req,res)=>{
     const {type,id} = req.params;
-    const data = await disease.findById(id).then(result => result);
-    res.json(data);
+    try{
+        const data = await disease.findById(id);
+        res.json(data);
+    }catch(error){
+        res.render('error',{error});
+    }
 });
+
+route.use((req,res)=>{
+    res.render('notfound');
+})
 
 export default route;
