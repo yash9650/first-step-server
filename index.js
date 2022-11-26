@@ -38,5 +38,6 @@ main().then(()=>{
 
 app.get('/home',(req,res)=>{
     console.log(req.query)
-    res.json({message: 'Done'});
+    // res.json({message: 'Done'});
+    res.send('hello');
 })
