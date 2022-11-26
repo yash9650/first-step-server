@@ -33,7 +33,7 @@ route.get('/data',async(req,res)=>{
 });
 
 route.get('/:type/:id',async(req,res)=>{
-    const {id,type} = req.query;
+    const id = req.query.id;
     const data = await disease.findById(id).then(result => result);
     res.json(data);
 });
