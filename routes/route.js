@@ -1,4 +1,4 @@
-import  express, { query } from "express";
+import  express from "express";
 import disease from "../models/disease-schema.js";
 
 
@@ -23,7 +23,7 @@ route.post('/add-disease', (req,res)=>{
 route.get('/data',(req,res)=>{
     
     disease.find().then((result)=> {
-        res.json(result);
+        res.send(result);
     }).catch(err => console.log(err) );
 });
 
