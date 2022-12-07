@@ -1,0 +1,60 @@
+<%- include('partials/header') %> 
+        <form class="p-5" action="/disease" method="post">
+            <div class="col-6 mb-3">
+                <label for="d_name" class="form-label">Disease Name</label>
+                <input type="text" class="form-control" name="dName" id="d_name" required>
+            </div>
+            <div class="col-6 mb-3">
+                <label for="symptom" class="form-label">Symptoms</label>
+                <input type="text" class="form-control" name="symptom" id="symptom" required>
+            </div>
+            <div class="col-6 mb-3">
+                <label for="desc" class="form-label">Description</label>
+                <input type="textarea" class="form-control" name="description" id="desc" required>
+            </div>
+            <div class="col-6 mb-3">
+                <label for="img-url" class="form-label">Image Url</label>
+                <textarea class="form-control" name="image" id="img-url" cols="30" rows="8" required></textarea>
+            </div>
+            <div class="col-6 mb-3">
+                <label for="home-remedies" class="form-label">Home Remedies</label>
+                <textarea class="form-control" name="homeRemedies" id="" cols="30" rows="10" required></textarea>
+                <!-- <input type="textarea" class="form-control" name="homeRemedies" id="home-remedies" required> -->
+            </div>
+            <div class="col-6 mb-3">
+                <label for="typeOfDisease" class="form-label">Type</label>
+                <select name="type" required class="form-select">
+                    <option value="">Select</option>
+                    <option value="Chronic">Chronic</option>
+                    <option value="Acute">Acute</option>
+                    <option value="Infectious">Infectious</option>
+                    <option value="Hereditary">Hereditary</option>
+                    <option value="Deficiency">Deficiency</option>
+                    <option value="Physiological">Physiological</option>
+                  </select>
+            </div>
+            <div class="col-6 mb-3">
+                <label for="healthEffect" class="form-label">Health Effect</label>
+                <input type="text"  class="form-control" name="healthEffect" id="healthEffect">
+            </div>
+            <div class="col-6 mb-3">
+                <label for="cancerous" class="form-label">Is it Cancerous?</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cancerous" value="Yes" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                      Yes
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="cancerous" value="No" id="flexRadioDefault2" checked>
+                    <label class="form-check-label" for="flexRadioDefault2">
+                      No
+                    </label>
+                  </div>
+            </div>
+
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+<%- include('partials/footer') %> 

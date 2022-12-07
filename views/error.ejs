@@ -1,12 +1,5 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-    <title>Error</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
-  </head>
-  <body>
+<%- include('partials/header') %> 
     <h1><%= error.message %></h1>
     <h2><%= error.status %></h2>
-    <pre><%= error.stack %></pre>
   </body>
 </html>

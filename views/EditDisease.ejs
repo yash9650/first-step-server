@@ -1,0 +1,84 @@
+<%- include('partials/header') %>
+    <form class="p-5" action="/disease/<%= id %>?_method=PUT" method="post">
+        <div class="col-6 mb-3">
+            <label for="d_name" class="form-label">Disease Name</label>
+            <input type="text" class="form-control" name="dName" value="<%=dName%>" id="d_name" required>
+        </div>
+        <div class="col-6 mb-3">
+            <label for="symptom" class="form-label">Symptoms</label>
+            <input type="text" class="form-control" name="symptom" value="<%=symptoms.join(" ,")%>" id="symptom"
+            required>
+        </div>
+        <div class="col-6 mb-3">
+            <label for="desc" class="form-label">Description</label>
+            <input type="textarea" class="form-control" name="description" value="<%=description%>" id="desc" required>
+        </div>
+        <div class="col-6 mb-3">
+            <label for="img-url" class="form-label">Image Url</label>
+            <textarea class="form-control" name="image" id="img-url" cols="30" rows="8"
+                required><%= imageUrl.join('\r\n') %></textarea>
+        </div>
+        <div class="col-6 mb-3">
+            <label for="home-remedies" class="form-label">Home Remedies</label>
+            <textarea class="form-control" name="homeRemedies" id="" cols="30" rows="10"
+                required><%= remedies.join('\r\n') %></textarea>
+        </div>
+        <div class="col-6 mb-3">
+            <label for="typeOfDisease" class="form-label">Type</label>
+            <select name="type" required class="form-select">
+                <option value="">Select</option>
+                <option value="Chronic" <%=type==="Chronic" ? "selected" : "" %> >Chronic</option>
+                <option value="Acute" <%=type==="Acute" ? "selected" : "" %> >Acute</option>
+                <option value="Infectious" <%=type==="Infectious" ? "selected" : "" %> >Infectious</option>
+                <option value="Hereditary" <%=type==="Hereditary" ? "selected" : "" %> >Hereditary</option>
+                <option value="Deficiency" <%=type==="Deficiency" ? "selected" : "" %> >Deficiency</option>
+                <option value="Physiological" <%=type==="Physiological" ? "selected" : "" %> >Physiological</option>
+            </select>
+        </div>
+        <div class="col-6 mb-3">
+            <label for="healthEffect" class="form-label">Health Effect</label>
+            <input type="text" value="<%= healthEffect %>" class="form-control" name="healthEffect" id="healthEffect">
+        </div>
+        <div class="col-6 mb-3">
+            <label for="cancerous" class="form-label">Is it Cancerous?</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="cancerous" value="Yes" id="flexRadioDefault1"
+                    <%=isCancerous ? 'checked' : '' %> >
+                <label class="form-check-label" for="flexRadioDefault1">
+                    Yes
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="cancerous" value="No" id="flexRadioDefault2"
+                    <%=isCancerous ? '' : 'checked' %> >
+                <label class="form-check-label" for="flexRadioDefault2">
+                    No
+                </label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <div style="display: inline; margin: 3em;">
+        <button type="button" onclick="myFunction()">Delete</button>
+        <div id="myDIV" style="display: none;">
+            <form style="display: inline;" action="/disease/<%= id %>?_method=DELETE" method="post">
+                <p style="display: inline;">Are you sure?</p>
+                <button type="submit">yes</button>
+            </form>
+            <button type="button" onclick="myFunction()">no</button>
+        </div>
+    </div>
+
+    <script>
+        function myFunction() {
+            let x = document.getElementById("myDIV");
+            if (x.style.display === "none") {
+                x.style.display = "inline";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
+
+    <%- include('partials/footer') %>
