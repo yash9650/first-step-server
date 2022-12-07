@@ -1,10 +1,12 @@
-import route from './routes/route.js';
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import methodoverride from 'method-override';
 import session from 'express-session';
+import diseaseRoute from './routes/disease.js';
+import dataRoute from './routes/data.js';
+import loginRoute from './routes/route.js';
 
 
 dotenv.config();
@@ -37,4 +39,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(cors());
 app.use(methodoverride('_method'));
 app.use(session({secret: process.env.SESSION_SECRET,resave: false,saveUninitialized: false}));
-app.use('/',route);
+
+app.use('/disease',diseaseRoute);
+app.use('/data',dataRoute);
+app.use('/',loginRoute);

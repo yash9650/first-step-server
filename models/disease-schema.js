@@ -17,6 +17,6 @@ const DiseaseSchema = new mongoose.Schema({
     isCancerous: Boolean
 })
 
-const disease = mongoose.model('Disease', DiseaseSchema);
+const Disease = mongoose.model('Disease', DiseaseSchema);
 
-export default disease;
+export default Disease;
