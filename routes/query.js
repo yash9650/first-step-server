@@ -1,6 +1,6 @@
 import express from 'express';
-import Query from '../models/query-schema';
-import { wrapAsync } from './utilityFx';
+import Query from '../models/query-schema.js';
+import { wrapAsync } from './utilityFx.js';
 
 const route = express.Router();
 
