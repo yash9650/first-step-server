@@ -60,9 +60,5 @@ route.delete('/:id', isAuth, wrapAsync(async (req, res) => {
     res.redirect('/disease');
 }));
 
-route.use((error, req, res, next) => {
-    res.render('error', { error });
-})
-
 
 export default route;

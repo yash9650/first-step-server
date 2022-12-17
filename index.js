@@ -6,8 +6,8 @@ import methodoverride from 'method-override';
 import session from 'express-session';
 import diseaseRoute from './routes/disease.js';
 import dataRoute from './routes/data.js';
-import loginRoute from './routes/route.js';
-
+import loginRoute from './routes/login.js';
+import queryRoute from './routes/query.js';
 
 dotenv.config();
 const app = express();
@@ -46,6 +46,19 @@ app.use(session({secret: process.env.SESSION_SECRET,
     }
 }));
 
-app.use('/disease',diseaseRoute);
+
+// --------------------- for frontend api -------------------->
 app.use('/data',dataRoute);
+app.use('/query',queryRoute);
+
+// ---------------------- for backend api ---------------------> 
+app.use('/disease',diseaseRoute);
 app.use('/',loginRoute);
+
+app.get('*', (req, res) => {
+    res.render('notfound');
+});
+
+app.use((error, req, res, next) => {
+    res.render('error', { error });
+});

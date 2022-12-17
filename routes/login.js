@@ -12,8 +12,4 @@ route.post('/login', setUser, isAuth, (req, res) => {
     res.redirect('/disease');
 });
 
-route.get('*', (req, res) => {
-    res.render('notfound');
-});
-
 export default route;
