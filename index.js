@@ -42,7 +42,7 @@ app.use(session({secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie:{
-        expires: 24 * 60 * 60 * 1000
+        expires: new Date(Date.now() + (24 * 60 * 60 * 1000))
     }
 }));
 
