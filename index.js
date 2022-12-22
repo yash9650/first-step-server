@@ -8,6 +8,7 @@ import diseaseRoute from './routes/disease.js';
 import dataRoute from './routes/data.js';
 import loginRoute from './routes/login.js';
 import queryRoute from './routes/query.js';
+import MongoStore from 'connect-mongo';
 
 dotenv.config();
 const app = express();
@@ -43,7 +44,10 @@ app.use(session({secret: process.env.SESSION_SECRET,
     saveUninitialized: false,
     cookie:{
         expires: new Date(Date.now() + (24 * 60 * 60 * 1000))
-    }
+    },
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_DB_CONNECTION_STRING, 
+    }) 
 }));
 
 

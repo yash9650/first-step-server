@@ -1,9 +1,4 @@
 function isAuth(req,res,next) {
-    // const {user,pass} = req.session;
-    // if(user === process.env.USERNAME && pass === process.env.PASS){
-    //     res.is
-    //     return next();
-    // }
     if(req.session.isAuth){
         return next();
     }
@@ -15,11 +10,17 @@ function setUser(req,res,next){
     if(username.toUpperCase().trim() === process.env.USERNAME 
     && password.toUpperCase().trim() === process.env.PASS){
         req.session.isAuth = true;
-        return next();
+        req.session.save(err => {
+            if(err){
+                res.redirect('/');
+                console.log(err);
+            }else{
+                return next();
+            }
+        })
+    }else{
+        res.redirect('/');
     }
-    // req.session.user = username.toUpperCase().trim();
-    // req.session.pass = password.toUpperCase().trim();
-    res.redirect('/');
 }
 
 function wrapAsync(fx){
